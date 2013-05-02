@@ -27,6 +27,8 @@
 	*/
 	add_filter( 'query_vars', 'a2zpt_query_vars' );
 	add_action( 'pre_get_posts', 'a2z_check_qv' );
+	add_action( 'widgets_init', 'a2zpt_register_widgets' );
+	add_action( 'wp_print_styles', 'register_a2zpt_styles' );
 
 	function a2zpt_query_vars( $query_vars ) {
 		array_push( $query_vars, 'a2zpt' );
@@ -54,8 +56,6 @@
 		$orderby = "( TRIM( LEADING 'A ' FROM TRIM( LEADING 'AN ' FROM TRIM( LEADING 'THE ' FROM UPPER( $wpdb->posts.post_title ) ) ) ) )";
 		return $orderby;
 	}
-	
-	add_action( 'widgets_init', 'a2zpt_register_widgets' );
 	
 	function a2zpt_register_widgets() {
 		register_widget( 'a2zpt_widget' );
@@ -133,8 +133,6 @@
 		}
 		
 	}
-	
-	add_action( 'wp_print_styles', 'register_a2zpt_styles' );
 	
 	function register_a2zpt_styles() {
 		wp_register_style( 'myWidgetStylesheet', plugins_url( 'css/display.css', __FILE__ ) );
