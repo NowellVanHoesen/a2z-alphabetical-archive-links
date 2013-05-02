@@ -1,4 +1,4 @@
-/* CSS Document */
+/* micro clearfix hack adapted from http://nicolasgallagher.com/micro-clearfix-hack/ */
 .a2zpt_widget ul:before,
 .a2zpt_widget ul:after {
 	content: "";
@@ -10,6 +10,7 @@
 .a2zpt_widget ul {
 	*zoom: 1;
 }
+/* style the list */
 .a2zpt_widget li {
 	float: left;
 }
