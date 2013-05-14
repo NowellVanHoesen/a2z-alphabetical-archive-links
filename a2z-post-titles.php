@@ -27,8 +27,6 @@
 	*/
 	add_filter( 'query_vars', 'a2zpt_query_vars' );
 	add_action( 'pre_get_posts', 'a2z_check_qv' );
-	add_action( 'widgets_init', 'a2zpt_register_widgets' );
-	add_action( 'wp_print_styles', 'register_a2zpt_styles' );
 
 	function a2zpt_query_vars( $query_vars ) {
 		array_push( $query_vars, 'a2zpt' );
@@ -57,6 +55,8 @@
 		return $orderby;
 	}
 	
+	add_action( 'widgets_init', 'a2zpt_register_widgets' );
+	
 	function a2zpt_register_widgets() {
 		register_widget( 'a2zpt_widget' );
 	}
@@ -77,11 +77,12 @@
 			$defaults = array(
 				'post_type' => 'post',
 				'title' => '',
-				/*'show_counts' => 'false',*/
+				'show_counts' => 0,
 			);
 			$instance = wp_parse_args( (array) $instance, $defaults );
 			$post_type = $instance['post_type'];
 			$title = $instance['title'];
+			$show_counts = $instance['show_counts'];
 			echo '<p>Title: <input class="widefat" name="' . $this->get_field_name( 'title' ) . '" type="text" value="' . esc_attr( $title ) . '" /></p>';
 			echo '<p>Post Type: <select name="' . $this->get_field_name( 'post_type' ) . '">';
 			foreach ( $available_posts_types AS $post_type_name ) {
@@ -90,12 +91,14 @@
 				}
 			}
 			echo '</select></p>';
+			echo '<p>Show Counts: <input name="' . $this->get_field_name( 'show_counts' ) . '" type="checkbox" ' . checked( $show_counts, 'on', false ) . ' /></p>';
 		}
 		
 		function update( $new_instance, $old_instance ) {
 			$instance = $old_instance;
 			$instance['title'] = strip_tags( $new_instance['title'] );
 			$instance['post_type'] = strip_tags( $new_instance['post_type'] );
+			$instance['show_counts'] = strip_tags( $new_instance['show_counts'] );
 			return $instance;
 		}
 		
@@ -103,18 +106,28 @@
 			extract( $args );
 			// run query to pull the initials for the specified post_type
 			global $wpdb;
+			$count_col = '';
+			if ( (bool) $instance['show_counts'] ) {
+				$count_col = ", count( substring( TRIM( LEADING 'A ' FROM TRIM( LEADING 'AN ' FROM TRIM( LEADING 'THE ' FROM UPPER( $wpdb->posts.post_title ) ) ) ), 1, 1) ) as counts";
+			}
 			$querystr = "
-				SELECT DISTINCT substring( TRIM( LEADING 'A ' FROM TRIM( LEADING 'AN ' FROM TRIM( LEADING 'THE ' FROM UPPER( $wpdb->posts.post_title ) ) ) ), 1, 1) as initial 
+				SELECT DISTINCT substring( TRIM( LEADING 'A ' FROM TRIM( LEADING 'AN ' FROM TRIM( LEADING 'THE ' FROM UPPER( $wpdb->posts.post_title ) ) ) ), 1, 1) as initial" . $count_col . "
 				FROM $wpdb->posts
 				WHERE $wpdb->posts.post_status = 'publish' 
 				AND $wpdb->posts.post_type = '" . $instance['post_type'] . "'
+				GROUP BY initial
 				ORDER BY TRIM( LEADING 'A ' FROM TRIM( LEADING 'AN ' FROM TRIM( LEADING 'THE ' FROM UPPER( $wpdb->posts.post_title ) ) ) );
 			";
 			$pt_initials = $wpdb->get_results( $querystr, ARRAY_A );
 			$initial_arr = array();
 			foreach( $pt_initials AS $pt_rec ) {
 				$link = add_query_arg( 'a2zpt', $pt_rec['initial'], get_post_type_archive_link( $instance['post_type'] ) );
-				$initial_arr[] = '<li><a href="' . $link . '">' . $pt_rec['initial'] . '</a></li>';
+				if ( (bool) $instance['show_counts'] ) {
+					$item = '<li class="count"><a href="' . $link . '">' . $pt_rec['initial'] . '<span>' . $pt_rec['counts'] . '</span>' . '</a></li>';
+				} else {
+					$item = '<li><a href="' . $link . '">' . $pt_rec['initial'] . '</a></li>';
+				}
+				$initial_arr[] = $item;
 			}
 			$initial_list = '<ul>' . implode( '', $initial_arr ) . '</ul>';
 			
@@ -133,6 +146,8 @@
 		}
 		
 	}
+	
+	add_action( 'wp_print_styles', 'register_a2zpt_styles' );
 	
 	function register_a2zpt_styles() {
 		wp_register_style( 'myWidgetStylesheet', plugins_url( 'css/display.css', __FILE__ ) );
