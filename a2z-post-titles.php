@@ -25,9 +25,18 @@
 		Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 		
 	*/
+	
+	/* add actions and filters */
 	add_filter( 'query_vars', 'a2zpt_query_vars' );
 	add_action( 'pre_get_posts', 'a2z_check_qv' );
-
+	add_action( 'wp_print_styles', 'register_a2zpt_styles' );
+	add_action( 'widgets_init', 'a2zpt_register_widgets' );
+	
+	function register_a2zpt_styles() {
+		wp_register_style( 'myWidgetStylesheet', plugins_url( 'css/display.css', __FILE__ ) );
+		wp_enqueue_style( 'myWidgetStylesheet' );
+	}
+	
 	function a2zpt_query_vars( $query_vars ) {
 		array_push( $query_vars, 'a2zpt' );
 		return $query_vars;
@@ -36,15 +45,14 @@
 	function a2z_check_qv( $query ) {
 		global $wp_query;
 		if( $query->is_main_query() && isset( $wp_query->query_vars['a2zpt'] ) ) {
-			// modify the where/orderby similar to above examples
-			echo "<!-- made it into modify the query -->";
+			// if we are on the main query and the query var 'a2zpt' exists, modify the where/orderby statements
 			add_filter( 'posts_where', 'a2zpt_modify_query_where' );
 			add_filter( 'posts_orderby', 'a2zpt_modify_query_orderby' );
 		}
 	}
 	
 	function a2zpt_modify_query_where( $where ) {
-		global $wp_query, $wpdb; //$wpdb->posts.
+		global $wp_query, $wpdb;
 		$where .= " AND substring( TRIM( LEADING 'A ' FROM TRIM( LEADING 'AN ' FROM TRIM( LEADING 'THE ' FROM UPPER( $wpdb->posts.post_title ) ) ) ), 1, 1) = '" . $wp_query->query_vars['a2zpt'] . "'";
 		return $where;
 	}
@@ -54,8 +62,6 @@
 		$orderby = "( TRIM( LEADING 'A ' FROM TRIM( LEADING 'AN ' FROM TRIM( LEADING 'THE ' FROM UPPER( $wpdb->posts.post_title ) ) ) ) )";
 		return $orderby;
 	}
-	
-	add_action( 'widgets_init', 'a2zpt_register_widgets' );
 	
 	function a2zpt_register_widgets() {
 		register_widget( 'a2zpt_widget' );
@@ -146,11 +152,3 @@
 		}
 		
 	}
-	
-	add_action( 'wp_print_styles', 'register_a2zpt_styles' );
-	
-	function register_a2zpt_styles() {
-		wp_register_style( 'myWidgetStylesheet', plugins_url( 'css/display.css', __FILE__ ) );
-		wp_enqueue_style( 'myWidgetStylesheet' );
-	}
-	
