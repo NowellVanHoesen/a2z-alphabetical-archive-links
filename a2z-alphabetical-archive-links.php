@@ -1,8 +1,8 @@
 <?php
 	/*
-		Plugin Name: A2Z Post Titles
-		Plugin URI: https://github.com/NowellVanHoesen/A2Z-Post-Titles/wiki
-		Description: This WordPress plugin will get a list of characters, A to Z, from the initial character of a post or CPT title. The Initials will link to a page/archive of posts/CPTs that begin with that character.
+		Plugin Name: A2Z Alphabetical Archive Links
+		Plugin URI: https://github.com/NowellVanHoesen/A2Z-Alphabetical-Archive-Links/wiki
+		Description: This WordPress plugin will get a list of characters, A to Z, from the initial character of a post or CPT title. The Initials will link to an archive page of posts/CPTs that begin with that character.
 		Version: 1.0
 		Author: Nowell VanHoesen
 		Author URI: http://nvwebdev.com/
@@ -27,54 +27,54 @@
 	*/
 	
 	/* add actions and filters */
-	add_filter( 'query_vars', 'a2zpt_query_vars' );
+	add_filter( 'query_vars', 'a2zaal_query_vars' );
 	add_action( 'pre_get_posts', 'a2z_check_qv' );
-	add_action( 'wp_print_styles', 'register_a2zpt_styles' );
-	add_action( 'widgets_init', 'a2zpt_register_widgets' );
+	add_action( 'wp_print_styles', 'register_a2zaal_styles' );
+	add_action( 'widgets_init', 'a2zaal_register_widgets' );
 	
-	function register_a2zpt_styles() {
+	function register_a2zaal_styles() {
 		wp_register_style( 'myWidgetStylesheet', plugins_url( 'css/display.css', __FILE__ ) );
 		wp_enqueue_style( 'myWidgetStylesheet' );
 	}
 	
-	function a2zpt_query_vars( $query_vars ) {
-		array_push( $query_vars, 'a2zpt' );
+	function a2zaal_query_vars( $query_vars ) {
+		array_push( $query_vars, 'a2zaal' );
 		return $query_vars;
 	}
 	
 	function a2z_check_qv( $query ) {
 		global $wp_query;
-		if( $query->is_main_query() && isset( $wp_query->query_vars['a2zpt'] ) ) {
-			// if we are on the main query and the query var 'a2zpt' exists, modify the where/orderby statements
-			add_filter( 'posts_where', 'a2zpt_modify_query_where' );
-			add_filter( 'posts_orderby', 'a2zpt_modify_query_orderby' );
+		if( $query->is_main_query() && isset( $wp_query->query_vars['a2zaal'] ) ) {
+			// if we are on the main query and the query var 'a2zaal' exists, modify the where/orderby statements
+			add_filter( 'posts_where', 'a2zaal_modify_query_where' );
+			add_filter( 'posts_orderby', 'a2zaal_modify_query_orderby' );
 		}
 	}
 	
-	function a2zpt_modify_query_where( $where ) {
+	function a2zaal_modify_query_where( $where ) {
 		global $wp_query, $wpdb;
-		$where .= " AND substring( TRIM( LEADING 'A ' FROM TRIM( LEADING 'AN ' FROM TRIM( LEADING 'THE ' FROM UPPER( $wpdb->posts.post_title ) ) ) ), 1, 1) = '" . $wp_query->query_vars['a2zpt'] . "'";
+		$where .= " AND substring( TRIM( LEADING 'A ' FROM TRIM( LEADING 'AN ' FROM TRIM( LEADING 'THE ' FROM UPPER( $wpdb->posts.post_title ) ) ) ), 1, 1) = '" . $wp_query->query_vars['a2zaal'] . "'";
 		return $where;
 	}
 	
-	function a2zpt_modify_query_orderby( $orderby ) {
+	function a2zaal_modify_query_orderby( $orderby ) {
 		global $wp_query, $wpdb;
 		$orderby = "( TRIM( LEADING 'A ' FROM TRIM( LEADING 'AN ' FROM TRIM( LEADING 'THE ' FROM UPPER( $wpdb->posts.post_title ) ) ) ) )";
 		return $orderby;
 	}
 	
-	function a2zpt_register_widgets() {
-		register_widget( 'a2zpt_widget' );
+	function a2zaal_register_widgets() {
+		register_widget( 'a2zaal_widget' );
 	}
 	
-	class a2zpt_widget extends WP_Widget {
+	class a2zaal_widget extends WP_Widget {
 		
-		function a2zpt_widget() {
+		function a2zaal_widget() {
 			$opts = array(
-				'classname' => 'a2zpt_widget',
+				'classname' => 'a2zaal_widget',
 				'description' => 'Display a list of post/cpt title initials that link to a list of posts beginning with that initial.',
 			);
-			$this->WP_Widget( 'a2zpt_widget', 'A2Z Post Titles', $opts );
+			$this->WP_Widget( 'a2zaal_widget', 'A2Z Post Titles', $opts );
 		}
 		
 		function form( $instance ) {
@@ -127,7 +127,7 @@
 			$pt_initials = $wpdb->get_results( $querystr, ARRAY_A );
 			$initial_arr = array();
 			foreach( $pt_initials AS $pt_rec ) {
-				$link = add_query_arg( 'a2zpt', $pt_rec['initial'], get_post_type_archive_link( $instance['post_type'] ) );
+				$link = add_query_arg( 'a2zaal', $pt_rec['initial'], get_post_type_archive_link( $instance['post_type'] ) );
 				if ( (bool) $instance['show_counts'] ) {
 					$item = '<li class="count"><a href="' . $link . '">' . $pt_rec['initial'] . '<span>' . $pt_rec['counts'] . '</span>' . '</a></li>';
 				} else {
