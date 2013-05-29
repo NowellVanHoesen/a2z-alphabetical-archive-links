@@ -74,7 +74,7 @@
 				'classname' => 'a2zaal_widget',
 				'description' => 'Display a list of post/cpt title initials that link to a list of posts beginning with that initial.',
 			);
-			$this->WP_Widget( 'a2zaal_widget', 'A2Z Post Titles', $opts );
+			$this->WP_Widget( 'a2zaal_widget', 'A2Z Alphabetical Archive Links', $opts );
 		}
 		
 		function form( $instance ) {
