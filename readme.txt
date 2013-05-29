@@ -1,6 +1,6 @@
 === A-2-Z Alphabetical Archive Links ===
 Contributors: nvwd
-Donate link: http://example.com/
+Donate link: http://nvwebdev.com
 Tags: post title, custom post type title, cpt title, title
 Requires at least: 3.3
 Tested up to: 3.5.1
