@@ -1,7 +1,7 @@
 <?php
 	/*
 		Plugin Name: A2Z Alphabetical Archive Links
-		Plugin URI: https://github.com/NowellVanHoesen/A2Z-Alphabetical-Archive-Links/wiki
+		Plugin URI: https://github.com/NowellVanHoesen/a2z-alphabetical-archive-links/wiki
 		Description: This WordPress plugin will get a list of characters, A to Z, from the initial character of a post or CPT title. The Initials will link to an archive page of posts/CPTs that begin with that character.
 		Version: 1.0
 		Author: Nowell VanHoesen
