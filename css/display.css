@@ -1,21 +1,21 @@
 /* CSS Document */
-.a2zpt_widget ul:before,
-.a2zpt_widget ul:after {
+.a2zaal_widget ul:before,
+.a2zaal_widget ul:after {
 	content: "";
 	display: table;
 }
-.a2zpt_widget ul:after {
+.a2zaal_widget ul:after {
 	clear: both;
 }
-.a2zpt_widget ul {
+.a2zaal_widget ul {
 	*zoom: 1;
 }
-.a2zpt_widget li {
+.a2zaal_widget li {
 	position: relative;
 	float: left;
 	margin: 0 0 0 1em;
 }
-.a2zpt_widget li.count:after {
+.a2zaal_widget li.count:after {
 	content: '';
 	z-index: 2;
 	position: absolute;
@@ -29,13 +29,13 @@
 	-webkit-box-shadow: inset 1px 0 #99400e;
 	box-shadow: inset 1px 0 #99400e;
 }
-.a2zpt_widget li a, .a2zpt_widget li a span {
+.a2zaal_widget li a, .a2zaal_widget li a span {
 	display: block;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-.a2zpt_widget li a {
+.a2zaal_widget li a {
 	padding: 0.25em 0.5em;
 	font-size: 0.75em;
 	font-weight: 700;
@@ -54,13 +54,13 @@
 	-webkit-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7), 0 1px 2px rgba(0, 0, 0, 0.05);
 	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
-.a2zpt_widget a:hover span {
+.a2zaal_widget a:hover span {
 	padding: 0.2em 7px 0.2em 6px;
 	max-width: 40px;
 	-webkit-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15), 1px 1px 2px rgba(0, 0, 0, 0.2);
 	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15), 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
-.a2zpt_widget span {
+.a2zaal_widget span {
 	position: absolute;
 	top: 1px;
 	left: 100%;
