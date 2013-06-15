@@ -78,7 +78,7 @@
 		}
 		
 		function form( $instance ) {
-			$available_posts_types = get_post_types( array( 'public' => true ) );
+			$available_posts_types = get_post_types( array( 'publicly_queryable' => true ) );
 			$exclude_pts = array( 'attachment' );
 			$defaults = array(
 				'post_type' => 'post',
@@ -126,8 +126,12 @@
 			";
 			$pt_initials = $wpdb->get_results( $querystr, ARRAY_A );
 			$initial_arr = array();
+			$base_url = get_post_type_archive_link( $instance['post_type'] );
+			if ( ! $base_url  ) {
+				$base_url = esc_url( home_url( '/' ) );
+			}
 			foreach( $pt_initials AS $pt_rec ) {
-				$link = add_query_arg( 'a2zaal', $pt_rec['initial'], get_post_type_archive_link( $instance['post_type'] ) );
+				$link = add_query_arg( 'a2zaal', $pt_rec['initial'], $base_url );
 				if ( (bool) $instance['show_counts'] ) {
 					$item = '<li class="count"><a href="' . $link . '">' . $pt_rec['initial'] . '<span>' . $pt_rec['counts'] . '</span>' . '</a></li>';
 				} else {
