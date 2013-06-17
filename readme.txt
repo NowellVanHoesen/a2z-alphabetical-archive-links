@@ -4,7 +4,7 @@ Donate link: http://nvwebdev.com
 Tags: post title, custom post type title, cpt title, title, alphabetical, alphabatized
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,6 +44,10 @@ None at this time
 
 == Changelog ==
 
+= 1.0.2 =
+
+Changed link builder again to account for modified front page settings
+
 = 1.0.1 =
 
 * Changed widget option for post type to include only publically queriable post types ( Pages not an option anymore )
@@ -53,6 +57,10 @@ None at this time
 Initial release
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+
+Changed link builder again to account for modified front page settings
 
 = 1.0.1 =
 
