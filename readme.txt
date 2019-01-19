@@ -2,13 +2,14 @@
 Contributors: nvwd
 Donate link: http://nvwebdev.com
 Tags: post title, custom post type title, cpt title, title, alphabetical, alphabatized
-Requires at least: 3.3
-Tested up to: 3.5.1
-Stable tag: 1.0.2
+Requires at least: 4.6.0
+Tested up to: 5.0.3
+Requires PHP: 5.6
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create and diaplay a list of first characters for post/cpt titles which link to an archive of the posts/cpts that begin with that character.
+Create and display a list of first characters for post/cpt titles which link to an archive of the posts/cpts that begin with that character.
 
 == Description ==
 
@@ -18,19 +19,23 @@ If the title begins with the following words, the first character of the second 
 
 * A
 * An
+* And
 * The
 
 *Examples*
 
 * 'A Cup of Joe' will be listed under 'C'
 * 'The Pony' will be listed under 'P'
+* 'Android Green is Nice' will be listed under 'A'
+* 'The 10 Strangest Foods' will be places under '#' (number sign)
 
 
 == Installation ==
 
 1. Upload the entire 'a2z-alphabetical-archive-links' folder to the '/wp-content/plugins/' directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Add the 'A2Z Alphabetical Archive Links' widget to a sidebar
+1. Go to the settings page to activate which post type(s) to have
+1. Add the 'A2Z Alphabetical Archive Links' widget to a widget area
 
 == Frequently Asked Questions ==
 
@@ -43,6 +48,15 @@ None at this time
 1. Links with count (top), hover example ( bottom )
 
 == Changelog ==
+
+= 2.0.0 =
+
+Complete rewrite. In an effort to make the code scale better.
+* Removed slow query
+* Added minimum WordPress version check
+* Added minimum php version check
+* Added grouping for titles that have a number as their first character
+* Added custom rewrites the handle better archive links
 
 = 1.0.2 =
 
@@ -57,6 +71,10 @@ Changed link builder again to account for modified front page settings
 Initial release
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+
+Complete rewrite to scale better and address performance issues
 
 = 1.0.2 =
 

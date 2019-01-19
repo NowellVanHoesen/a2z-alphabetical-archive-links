@@ -1,19 +1,39 @@
 /* CSS Document */
-.a2zaal_widget ul:before,
-.a2zaal_widget ul:after {
-	content: "";
-	display: table;
-}
-.a2zaal_widget ul:after {
-	clear: both;
-}
 .a2zaal_widget ul {
-	*zoom: 1;
+	display: grid;
+	grid-template-columns: repeat( auto-fill, minmax( 2.625rem, 1fr ) );
+	justify-items: center;
+	list-style: none;
+	margin: 0;
+}
+.a2zaal_widget ul.counts {
+	grid-template-columns: repeat( auto-fill, minmax( 3rem, 1fr ) );
 }
 .a2zaal_widget li {
 	position: relative;
-	float: left;
-	margin: 0 0 0 1em;
+}
+
+.a2zaal_widget a {
+	border-bottom: 1px solid transparent;
+	display: block;
+	padding: 0.625rem 0.5rem;
+	text-align: center;
+}
+
+.a2zaal_widget a:hover {
+	border-bottom: 1px solid blue;
+	color: blue;
+	text-decoration: underline;
+}
+.a2zaal_widget a.count > span {
+	font-size: 75%;
+	padding-left: 0.4em;
+	vertical-align: super;
+	white-space: nowrap;
+}
+/* premium styles for sliding counts
+.a2zaal_widget ul.counts {
+	grid-template-columns: repeat( auto-fit, minmax( 2.5em, 1fr ) );
 }
 .a2zaal_widget li.count:after {
 	content: '';
@@ -34,6 +54,7 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	white-space: nowrap;
 }
 .a2zaal_widget li a {
 	padding: 0.25em 0.5em;
@@ -89,3 +110,4 @@
 	-o-transition-property: padding, max-width;
 	transition-property: padding, max-width;
 }
+*/
