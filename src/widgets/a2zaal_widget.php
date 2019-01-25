@@ -24,7 +24,8 @@ namespace NVWD\A2ZAAL;
  * @return void
  */
 function maybe_register_archive_link_widget() {
-	if ( empty( namespace\get_a2zaal_active_post_types() ) ) {
+	$a2z_active_post_types = namespace\get_a2zaal_active_post_types();
+	if ( empty( $a2z_active_post_types ) ) {
 		return;
 	}
 

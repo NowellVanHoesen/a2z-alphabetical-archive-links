@@ -162,7 +162,8 @@
 
 		$version_check_errors = apply_filters( 'a2zaal_do_version_checks', $version_check_errors );
 
-		if ( ! empty( $version_check_errors->get_error_codes() ) ) {
+		$error_codes = $version_check_errors->get_error_codes();
+		if ( ! empty( $error_codes ) ) {
 			return $version_check_errors;
 		}
 
