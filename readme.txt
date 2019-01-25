@@ -5,7 +5,7 @@ Tags: post title, custom post type title, cpt title, title, alphabetical, alphab
 Requires at least: 4.6.0
 Tested up to: 5.0.3
 Requires PHP: 5.6
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,10 @@ None at this time
 1. Links with count (top), hover example ( bottom )
 
 == Changelog ==
+
+= 2.0.1 =
+
+* fixed bug with earlier versions of php and version checking
 
 = 2.0.0 =
 
