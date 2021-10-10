@@ -100,7 +100,7 @@
 		$a2zaal_active_post_types = NVWD\A2ZAAL\get_a2zaal_active_post_types();
 
 		foreach ( $a2zaal_active_post_types AS $active_cpt ) {
-			NVWD\A2ZAAL\remove_disabled_taxonomy_terms( $active_cpt );
+			NVWD\A2ZAAL\remove_disabled_cpts( $active_cpt );
 		}
 
 		delete_option( 'a2zaal_post_types' );
