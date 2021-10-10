@@ -1,15 +1,17 @@
 <?php
 	/*
-		Plugin Name: A2Z Alphabetical Archive Links
-		Plugin URI: https://github.com/NowellVanHoesen/a2z-alphabetical-archive-links/wiki
-		Description: Get a list of characters, A to Z, from the initial character of a post or CPT title. The Initials will link to an archive page of posts/CPTs that begin with that character.
-		Version: 2.0.2
-		Author: Nowell VanHoesen
-		Author URI: http://nvwebdev.com/
-		Author Email: nowell@nvwebdev.com
-		License: GPL-2.0+
-		Licanse URI: https://www.gnu.org/licenses/gpl.html
-		Text Domain: nvwd-a2zaal
+		Plugin Name:       A2Z Alphabetical Archive Links
+		Plugin URI:        https://github.com/NowellVanHoesen/a2z-alphabetical-archive-links/wiki
+		Description:       Get a list of characters, A to Z, from the initial character of a post or CPT title. The Initials will link to an archive page of posts/CPTs that begin with that character.
+		Requires at least: 5.8
+		Requires PHP:      7.0
+		Version:           2.1.0
+		Author:            Nowell VanHoesen
+		Author URI:        http://nvwebdev.com/
+		Author Email:      nowell@nvwebdev.com
+		License:           GPL-2.0-or-later
+		License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+		Text Domain:       nvwd-a2zaal
 	*/
 
 	if ( ! defined( 'WPINC' ) ) {
@@ -29,8 +31,8 @@
 	define( 'A2ZAAL_ROOT_URL', $a2zaal_url );
 	define( 'A2ZAAL_TEXT_DOMAIN', 'nvwd-a2zaal' );
 
-	define( 'A2ZAAL_PHP_MIN_VERIONS', '5.6' );
-	define( 'A2ZAAL_WP_MIN_VERSIONS', '4.6.0' );
+	define( 'A2ZAAL_PHP_MIN_VERIONS', '7.0' );
+	define( 'A2ZAAL_WP_MIN_VERSIONS', '5.8' );
 
 	register_activation_hook( A2ZAAL_PLUGIN, 'a2zaal_activation_check' );
 	register_deactivation_hook( A2ZAAL_PLUGIN, 'a2zaal_deactivate' );
