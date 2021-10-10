@@ -62,8 +62,8 @@ function get_post_a2zaal_info( $post_title ) {
 	if ( empty( $post_title ) ) {
 		return false;
 	}
-	preg_match( '/\A[(a|an|and|the) ]*\b(([a-zA-Z]{1}|[\d]{1,}).*)\z/i', $post_title, $a2zaal_char );
-	$post_a2zaal_info = array( 'sort_title' => $a2zaal_char[1], 'initial' => strtoupper( $a2zaal_char[2] ) );
+	preg_match( '/\A(a |an |and |the )*\b(([a-zA-Z]{1}|[\d]{1,}).*)\z/i', $post_title, $a2zaal_char );
+	$post_a2zaal_info = array( 'sort_title' => $a2zaal_char[2], 'initial' => strtoupper( $a2zaal_char[3] ) );
 
 	if ( is_numeric( $post_a2zaal_info['initial'] ) ) {
 		$post_a2zaal_info['initial'] = '0';
