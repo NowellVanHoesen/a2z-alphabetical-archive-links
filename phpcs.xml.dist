@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Coding Standards for Plugins">
+	<description>Generally-applicable sniffs for WordPress plugins</description>
+	<config name="php_version" value="70400" />
+
+	<!-- Check all PHP files in directory tree by default. -->
+	<arg name="extensions" value="php"/>
+	<file>.</file>
+
+	<!-- Show sniff codes in all reports -->
+	<arg value="s"/>
+
+	<rule ref="WordPress">
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax.Found" />
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
+
+		<!-- DB interface uses one off calls run through API, no need to cache -->
+		<exclude name="WordPress.DB.DirectDatabaseQuery.DirectQuery" />
+		<exclude name="WordPress.DB.DirectDatabaseQuery.NoCaching" />
+
+		<!-- We want to prepare statements outside other $wpdb functions -->
+		<exclude name="WordPress.DB.PreparedSQL.NotPrepared" />
+
+		<!-- Not going to require file comments -->
+		<exclude name="Squiz.Commenting.FileComment" />
+
+		<!-- The following rules will be removed after a discussion about how to handle the way Trellis saves fonts, critical css, and SVGs -->
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_read_file_put_contents" jira-ticket="TRE-681" />
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_mkdir" jira-ticket="TRE-681" />
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents" jira-ticket="TRE-681" />
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_rmdir" jira-ticket="TRE-681" />
+	</rule>
+
+	<rule ref="WordPress.Files.FileName.InvalidClassFileName">
+		<exclude-pattern>inc/classes/update/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.ValidVariableName">
+		<properties>
+			<property name="allowed_custom_properties" type="array">
+				<element value="dismissKey" reason="Part of the Mediavine UI Notices, keeping things consistent." />
+				<element value="childNodes" />
+				<element value="tagName" />
+				<element value="textContent" />
+				<element value="parentNode" />
+				<element value="nodeType" />
+				<element value="nodeName" />
+				<element value="nextSibling" />
+				<element value="firstChild" />
+				<element value="nodeValue" />
+				<element value="DEFAULT_ARGS" />
+			</property>
+		</properties>
+	</rule>
+
+	<!-- <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="Mediavine\Trellis" />
+				<element value="mv_jp_" />
+				<element value="trellis_" />
+				<element value="mv_" />
+				<element value="mvt_" />
+				<element value="mvtp_" />
+				<element value="tha_" />
+			</property>
+		</properties>
+	</rule> -->
+
+	<!-- Disable el() helper function -->
+	<rule ref="Generic.PHP.ForbiddenFunctions">
+		<properties>
+			<property name="forbiddenFunctions" type="array" value="el=>null,dd=>null,dump=>null" />
+		</properties>
+	</rule>
+
+	<rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+		<exclude name="SlevomatCodingStandard.Arrays.AlphabeticallySortedByKeys" />
+		<exclude name="SlevomatCodingStandard.Arrays.DisallowImplicitArrayCreation.ImplicitArrayCreationUsed" />
+		<exclude name="SlevomatCodingStandard.Arrays.SingleLineArrayWhitespace.SpaceAfterArrayOpen" />
+		<exclude name="SlevomatCodingStandard.Arrays.SingleLineArrayWhitespace.SpaceBeforeArrayClose" />
+		<exclude name="SlevomatCodingStandard.Classes.ClassLength.ClassTooLong" />
+		<exclude name="SlevomatCodingStandard.Classes.ClassStructure.IncorrectGroupOrder" />
+		<exclude name="SlevomatCodingStandard.Classes.ForbiddenPublicProperty" />
+		<exclude name="SlevomatCodingStandard.Classes.RequireAbstractOrFinal.ClassNeitherAbstractNorFinal" />
+		<exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix" />
+		<exclude name="SlevomatCodingStandard.Commenting.DisallowCommentAfterCode.DisallowedCommentAfterCode" />
+		<exclude name="SlevomatCodingStandard.Complexity.Cognitive" />
+		<exclude name="SlevomatCodingStandard.ControlStructures.DisallowEmpty" />
+		<exclude name="SlevomatCodingStandard.ControlStructures.DisallowYodaComparison.DisallowedYodaComparison" />
+		<exclude name="SlevomatCodingStandard.ControlStructures.NewWithoutParentheses" />
+		<exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison" />
+		<exclude name="SlevomatCodingStandard.Files.FileLength.FileTooLong" />
+		<exclude name="SlevomatCodingStandard.Files.FunctionLength.FunctionLength" />
+		<exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName.NoMatchBetweenTypeNameAndFileName"/>
+		<exclude name="SlevomatCodingStandard.Functions.FunctionLength.FunctionLength" />
+		<exclude name="SlevomatCodingStandard.Functions.RequireArrowFunction.RequiredArrowFunction" />
+		<exclude name="SlevomatCodingStandard.Functions.RequireTrailingCommaInCall" />
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants" />
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions.NonFullyQualified" />
+		<exclude name="SlevomatCodingStandard.Numbers.RequireNumericLiteralSeparator" />
+		<exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator" />
+		<exclude name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPreIncrementOperator" />
+		<exclude name="SlevomatCodingStandard.PHP.DisallowReference" />
+		<exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing" />
+		<exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.UselessAnnotation" />
+		<exclude name="SlevomatCodingStandard.TypeHints.UselessConstantTypeHint.UselessVarAnnotation" />
+		<exclude name="SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable" />
+		<exclude name="SlevomatCodingStandard.Whitespaces.DuplicateSpaces.DuplicateSpaces" />
+		<exclude name="SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter" comment="Generic.CodeAnalysis.UnusedFunctionParameter is better" />
+		<exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint" />
+		<exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint" />
+		<exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint" />
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
+		<properties>
+			<property name="linesCountBetweenDifferentAnnotationsTypes" value="1" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.ControlStructures.BlockControlStructureSpacing">
+		<properties>
+			<property name="controlStructures" type="array">
+				<element value="if" />
+				<element value="do" />
+				<element value="while" />
+				<element value="for" />
+				<element value="foreach" />
+				<element value="switch" />
+				<element value="try" />
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.ControlStructures.EarlyExit">
+		<properties>
+			<property name="ignoreStandaloneIfInScope" value="true" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.ControlStructures.RequireMultiLineCondition">
+		<properties>
+			<property name="minLineLength" value="125" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.ControlStructures.RequireMultiLineTernaryOperator">
+		<properties>
+			<property name="lineLengthLimit" value="100" />
+			<property name="minExpressionsLength" value="75" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Files.LineLength">
+		<properties>
+			<property name="lineLengthLimit" value="160" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces">
+		<properties>
+			<property name="linesCountAfterOpeningBrace" value="0" />
+			<property name="linesCountBeforeClosingBrace" value="0" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Classes.ModernClassNameReference">
+		<exclude name="SlevomatCodingStandard.Classes.ModernClassNameReference.ClassNameReferencedViaMagicConstant" />
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Classes.RequireMultiLineMethodSignature">
+		<properties>
+			<property name="minLineLength" value="125" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Classes.TraitUseSpacing">
+		<properties>
+			<property name="linesCountBeforeFirstUseWhenFirstInClass" value="0" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Files.LineLength.LineTooLong">
+		<!-- Patterns will contain long lines to keep format -->
+		<exclude-pattern>inc/classes/patterns/*</exclude-pattern>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Functions.RequireMultiLineCall">
+		<properties>
+			<property name="minLineLength" value="125" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
+		<properties>
+			<property name="allowFallbackGlobalFunctions" value="true" />
+			<property name="allowFullyQualifiedGlobalClasses" value="true" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces">
+		<properties>
+			<property name="namespacesRequiredToUse" type="array">
+				<element value="Mediavine" />
+				<element value="CF\WordPress" />
+				<element value="WebSharks\CometCache" />
+			</property>
+			<property name="allowUseFromRootNamespace" value="true" />
+		</properties>
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.TypeHints.ParameterTypeHint">
+		<exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification" />
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint">
+		<properties>
+			<property name="enableNativeTypeHint" value="false" />
+		</properties>
+		<exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingTraversableTypeHintSpecification" />
+	</rule>
+
+	<rule ref="SlevomatCodingStandard.TypeHints.ReturnTypeHint">
+		<exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingTraversableTypeHintSpecification" />
+	</rule>
+
+	<!-- Ignore specific files -->
+	<exclude-pattern>tests/*</exclude-pattern>
+	<exclude-pattern>vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>build/*</exclude-pattern>
+	<exclude-pattern>.git/*</exclude-pattern> <!-- stop phpcs from scanning the reflog (.git/logs/ref/*) -->
+</ruleset>
