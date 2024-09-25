@@ -63,6 +63,19 @@ function create_settings_page() {
 	include( A2ZAAL_VIEW_DIR . 'settings_form.php' );
 }
 
+add_action( 'admin_init', __NAMESPACE__ . '\register_plugin_settings' );
+add_action( 'rest_admin_init', __NAMESPACE__ . '\register_plugin_settings' );
+
+function register_plugin_settings() {
+	$args = [
+		'show_in_rest' => true,
+		'default' => [],
+		'type' => 'array'
+	];
+	
+	register_setting( 'options', 'a2zaal_post_types', $args );
+}
+
 add_action( 'current_screen', __NAMESPACE__ . '\maybe_process_a2zaal_settings_save' );
 
 /**
