@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "nvwda2zaal/a2z-links",
+	"version": "0.1.0",
+	"title": "A2z Links",
+	"category": "widgets",
+	"icon": "admin-links",
+	"description": "Display a list of post/cpt title initials that link to a list of posts beginning with that initial.",
+	"example": {},
+	"supports": {
+		"color": {
+			"background": false,
+			"text": true
+		},
+		"html": false,
+		"typography": {
+			"fontSize": true
+		}
+	},
+	"attributes": {
+		"title": {
+			"type": "string"
+		},
+		"showCounts": {
+			"type": "boolean"
+		},
+		"selectedPostType": {
+			"type": "string"
+		}
+	},
+	"textdomain": "a2z-links",
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}
