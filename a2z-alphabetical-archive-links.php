@@ -273,3 +273,9 @@
 	function a2zaal_output_admin_notice( $class, $message ) {
 		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) );
 	}
+
+	if ( function_exists( 'register_block_type' ) ) {
+		add_action( 'init', function () {
+			register_block_type( __DIR__ . '/build/blocks/a2z-links' );
+		} );
+	}
