@@ -14,7 +14,7 @@ namespace NVWD\A2ZAAL;
 \add_filter( 'plugin_action_links_' . A2ZAAL_BASENAME, __NAMESPACE__ . '\add_settings_page_link' );
 
 function add_settings_page_link( $links ) {
-	$settings_link = '<a href="' . \admin_url( 'options-general.php?page=a2zaal-options' ) . '">' . __( 'Settings', A2ZAAL_TEXT_DOMAIN ) . '</a>';
+	$settings_link = '<a href="' . \admin_url( 'options-general.php?page=a2zaal-options' ) . '">' . __( 'Settings', 'nvwd-a2zaal' ) . '</a>';
 	array_unshift( $links, $settings_link );
 	return $links;
 }
@@ -197,7 +197,7 @@ function maybe_remove_current_processing( $disabled_post_type ) {
  */
 function disabled_a2zaal_cpts_admin_notice() {
 	$class = 'notice notice-success is-dismissible';
-	$message = __( 'The specified Post Type(s) are now disabled for A2Z Alphabetical Archive Links.', A2ZAAL_TEXT_DOMAIN );
+	$message = __( 'The specified Post Type(s) are now disabled for A2Z Alphabetical Archive Links.', 'nvwd-a2zaal' );
 
 	a2zaal_output_admin_notice( $class, $message );
 }
@@ -230,7 +230,7 @@ function maybe_setup_background_post_type_process( $enable_post_type ) {
  */
 function enabled_a2zaal_cpts_admin_notice() {
 	$class = 'notice notice-success is-dismissible';
-	$message = __( 'The specified Post Type(s) are being processed in the background for A2Z Alphabetical Archive Links. Leaving this page does not stop the process.', A2ZAAL_TEXT_DOMAIN );
+	$message = __( 'The specified Post Type(s) are being processed in the background for A2Z Alphabetical Archive Links. Leaving this page does not stop the process.', 'nvwd-a2zaal' );
 
 	a2zaal_output_admin_notice( $class, $message );
 }

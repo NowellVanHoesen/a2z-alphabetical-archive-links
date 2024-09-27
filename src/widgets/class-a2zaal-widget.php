@@ -37,9 +37,9 @@ class a2zaal_widget extends \WP_Widget {
 	function __construct() {
 		$opts = array(
 			'classname' => 'a2zaal_widget',
-			'description' => __( 'Display a list of post/cpt title initials that link to a list of posts beginning with that initial.', A2ZAAL_TEXT_DOMAIN ),
+			'description' => __( 'Display a list of post/cpt title initials that link to a list of posts beginning with that initial.', 'nvwd-a2zaal' ),
 		);
-		parent::__construct( 'a2zaal_widget', __( 'A2Z Alphabetical Archive Links', A2ZAAL_TEXT_DOMAIN ), $opts );
+		parent::__construct( 'a2zaal_widget', __( 'A2Z Alphabetical Archive Links', 'nvwd-a2zaal' ), $opts );
 	}
 
 	function form( $instance ) {
@@ -89,8 +89,8 @@ class a2zaal_widget extends \WP_Widget {
 			$group_count_display = ! empty( $instance['show_counts'] ) ? '<span>' . number_format_i18n( count( $grouped_titles ) ) . '</span>' : '';
 			$link_classes = ! empty( $instance['show_counts'] ) ? array( 'count' ) : array();
 			$link_classes = implode( ' ', apply_filters( 'a2zaal_link_css_class', $link_classes, $instance, $args ) );
-			$link_title = esc_attr__( trim( apply_filters( 'a2zaal_link_title', '', $instance, $args ) ), A2ZAAL_TEXT_DOMAIN );
-			$link_text_display = esc_html__( $title_initial, A2ZAAL_TEXT_DOMAIN );
+			$link_title = esc_attr__( trim( apply_filters( 'a2zaal_link_title', '', $instance, $args ) ), 'nvwd-a2zaal' );
+			$link_text_display = esc_html__( $title_initial, 'nvwd-a2zaal' );
 
 			if ( '0' == $title_initial ) {
 				$group_link = '/' . $instance['selected_post_type'] . '/' . A2ZAAL_REWRITE_TAG . '/num';
@@ -111,7 +111,7 @@ class a2zaal_widget extends \WP_Widget {
 		$container_class_output = empty( $container_classes ) ? '': ' class="' . implode( ' ', $container_classes ) . '"';
 
 		if ( empty( $display_links ) ) {
-			$display_links[] = '<p>' . esc_html__( 'No links to display.', A2ZAAL_TEXT_DOMAIN ) . '</p>';
+			$display_links[] = '<p>' . esc_html__( 'No links to display.', 'nvwd-a2zaal' ) . '</p>';
 		}
 
 		echo $args['before_widget'];

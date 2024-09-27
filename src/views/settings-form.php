@@ -38,7 +38,7 @@ foreach ( $registered_post_types AS $post_type ) {
 	$processing_output = '';
 	$display_input_type = 'checkbox';
 	if ( $post_type_processing ) {
-		$processing_output = '<span class="a2zaal_processing">' . \esc_html__( 'Processing', A2ZAAL_TEXT_DOMAIN ) . '&nbsp;</span>';
+		$processing_output = '<span class="a2zaal_processing">' . \esc_html__( 'Processing', 'nvwd-a2zaal' ) . '&nbsp;</span>';
 		$display_input_type = 'hidden';
 	}
 
@@ -46,7 +46,7 @@ foreach ( $registered_post_types AS $post_type ) {
 
 	echo '<p data-post_type="' . $post_type_attr . '">';
 	echo sprintf( '%s<input type="%s" name="a2zaal_enabled_post_type[]" value="%s"%s>', $processing_output, $display_input_type, $post_type_attr, $post_type_active );
-	echo \esc_html__( $post_type->label, A2ZAAL_TEXT_DOMAIN ) . ' (' . $post_type_total_count . ')';
+	echo \esc_html__( $post_type->label, 'nvwd-a2zaal' ) . ' (' . $post_type_total_count . ')';
 	echo "</p>";
 }
 ?>

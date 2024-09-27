@@ -93,7 +93,7 @@ function filter_archive_description( $archive_description ) {
 	$group_title_initial = get_query_var( A2ZAAL_REWRITE_TAG );
 
 	if ( '0' == $group_title_initial ) {
-		$group_title_initial = __( 'a number', A2ZAAL_TEXT_DOMAIN );
+		$group_title_initial = __( 'a number', 'nvwd-a2zaal' );
 	}
 
 	return sprintf( __( '%1$s beginning with %2$s.' ), $post_type_labels->label, $group_title_initial );

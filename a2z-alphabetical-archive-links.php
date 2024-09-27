@@ -27,7 +27,6 @@
 	}
 
 	define( 'A2ZAAL_ROOT_URL', $a2zaal_url );
-	define( 'A2ZAAL_TEXT_DOMAIN', 'nvwd-a2zaal' );
 
 	define( 'A2ZAAL_PHP_MIN_VERIONS', '5.6' );
 	define( 'A2ZAAL_WP_MIN_VERSIONS', '4.6.0' );
@@ -193,7 +192,7 @@
 
 		$version_check_errors->add(
 			'wp_version',
-			esc_html__('WordPress version check for A2Z Alphabetical Archive Links failed. A2Z Alphabetical Archive Links should not be active.', A2ZAAL_TEXT_DOMAIN )
+		esc_html__('WordPress version check for A2Z Alphabetical Archive Links failed. A2Z Alphabetical Archive Links should not be active.', 'nvwd-a2zaal' )
 		);
 
 		return $version_check_errors;
@@ -220,7 +219,7 @@
 
 		$version_check_errors->add(
 			'php_version',
-			esc_html__('PHP version check for A2Z Alphabetical Archive Links failed. A2Z Alphabetical Archive Links should not be active.', A2ZAAL_TEXT_DOMAIN )
+		esc_html__('PHP version check for A2Z Alphabetical Archive Links failed. A2Z Alphabetical Archive Links should not be active.', 'nvwd-a2zaal' )
 		);
 
 		return $version_check_errors;
@@ -237,7 +236,7 @@
 	 */
 	function a2zaal_wp_version_failure_message() {
 		$class = 'notice notice-error';
-		$message = __( 'A2Z Alphabetical Archive Links requires WordPress ' . A2ZAAL_WP_MIN_VERSIONS . ' to function properly. Please upgrade WordPress. A2Z Alphabetical Archive Links has been auto-deactivated.', A2ZAAL_TEXT_DOMAIN );
+	$message = __( 'A2Z Alphabetical Archive Links requires WordPress ' . A2ZAAL_WP_MIN_VERSIONS . ' to function properly. Please upgrade WordPress. A2Z Alphabetical Archive Links has been auto-deactivated.', 'nvwd-a2zaal' );
 
 		a2zaal_output_admin_notice( $class, $message );
 	}
@@ -253,7 +252,7 @@
 	 */
 	function a2zaal_php_version_failure_message() {
 		$class = 'notice notice-error';
-		$message = __( 'A2Z Alphabetical Archive Links requires PHP ' . A2ZAAL_PHP_MIN_VERIONS . ' to function properly. Please upgrade PHP. A2Z Alphabetical Archive Links has been auto-deactivated.', A2ZAAL_TEXT_DOMAIN );
+	$message = __( 'A2Z Alphabetical Archive Links requires PHP ' . A2ZAAL_PHP_MIN_VERIONS . ' to function properly. Please upgrade PHP. A2Z Alphabetical Archive Links has been auto-deactivated.', 'nvwd-a2zaal' );
 
 		a2zaal_output_admin_notice( $class, $message );
 	}
