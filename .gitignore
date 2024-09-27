@@ -1,3 +1,4 @@
 node_modules
 build/blocks
 /vendor/
+.vscode/settings.json
