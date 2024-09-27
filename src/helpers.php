@@ -62,7 +62,9 @@ function get_post_a2zaal_info( $post_title ) {
 	if ( empty( $post_title ) ) {
 		return false;
 	}
-	preg_match( '/\A[(a|an|and|the) ]*\b(([a-zA-Z]{1}|[\d]{1,}).*)\z/i', $post_title, $a2zaal_char );
+
+	// Regex explained: https://regex101.com/r/B8vbdX/1
+	preg_match( '/\A(?|a |an |and |the )*(([a-zA-Z]{1}|[\d]{1,}).*)\z/i', $post_title, $a2zaal_char );
 	$post_a2zaal_info = array( 'sort_title' => $a2zaal_char[1], 'initial' => strtoupper( $a2zaal_char[2] ) );
 
 	if ( is_numeric( $post_a2zaal_info['initial'] ) ) {
