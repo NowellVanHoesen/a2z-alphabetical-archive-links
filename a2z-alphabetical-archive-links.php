@@ -31,6 +31,7 @@
 
 	define( 'A2ZAAL_PHP_MIN_VERIONS', '5.6' );
 	define( 'A2ZAAL_WP_MIN_VERSIONS', '4.6.0' );
+namespace NVWD\A2ZAAL;
 
 	register_activation_hook( A2ZAAL_PLUGIN, 'a2zaal_activation_check' );
 	register_deactivation_hook( A2ZAAL_PLUGIN, 'a2zaal_deactivate' );
