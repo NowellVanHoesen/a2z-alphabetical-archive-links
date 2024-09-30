@@ -39,6 +39,8 @@
 
 	/* do version checks before including the rest of the plugin code */
 	if ( is_wp_error( a2zaal_version_checks() ) ) {
+add_filter( 'a2zaal_do_version_checks', 'a2zaal_check_php_version' );
+add_filter( 'a2zaal_do_version_checks', 'a2zaal_check_wp_version' );
 		return;
 	}
 
@@ -169,7 +171,6 @@
 		return true;
 	}
 
-	add_filter( 'a2zaal_do_version_checks', 'a2zaal_check_wp_version' );
 	/**
 	 * Check WP version
 	 *
@@ -198,7 +199,6 @@
 		return $version_check_errors;
 	}
 
-	add_filter( 'a2zaal_do_version_checks', 'a2zaal_check_php_version' );
 	/**
 	 * Check PHP version
 	 *
