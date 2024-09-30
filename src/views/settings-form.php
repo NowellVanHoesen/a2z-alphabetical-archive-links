@@ -3,13 +3,29 @@
  * A2Z Alphabetical Archive Links Options/Settings form
  *
  * @package     NVWD\A2ZAAL
+ *
  * @since       2.0.0
+ *
  * @author      nvwd
+ *
  * @link        http://nvwebdev.com/
+ *
  * @license     GPL-2.0+
  */
 
 namespace NVWD\A2ZAAL;
+
+$a2zaal_active_post_types = get_a2zaal_active_post_types();
+
+$a2zaal_excluded_post_types = [
+	'attachment',
+	'revision',
+	'nav_menu_item',
+];
+
+$a2zaal_registered_post_types = \get_post_types( [ 'publicly_queryable' => true ], 'objects' );
+
+$a2zaal_processing_counts = \get_option( 'a2zaal_processing_counts', [] );
 
 ?>
 
@@ -20,35 +36,42 @@ namespace NVWD\A2ZAAL;
 <?php
 \wp_nonce_field( 'a2zaal-options' );
 
-foreach ( $registered_post_types AS $post_type ) {
-
-	if ( in_array( $post_type->name, $excluded_post_types ) ) {
+foreach ( $a2zaal_registered_post_types as $a2zaal_post_type ) {
+	if ( in_array( $a2zaal_post_type->name, $a2zaal_excluded_post_types, true ) ) {
 		continue;
 	}
 
-	$post_type_attr = \esc_attr( $post_type->name );
-	$post_type_total_count = \wp_count_posts( $post_type->name )->publish;
+	$a2zaal_post_type_total_count = \wp_count_posts( $a2zaal_post_type->name )->publish;
 
-	if ( empty( $a2zaal_processing_counts ) ) {
-		$post_type_processing = false;
-	} else {
-		$post_type_processing = array_key_exists( $post_type->name, $a2zaal_processing_counts['post_type'] );
+	$a2zaal_post_type_processing = empty( $a2zaal_processing_counts )
+		? false
+		: array_key_exists( $a2zaal_post_type->name, $a2zaal_processing_counts['post_type'] );
+
+	$a2zaal_processing_output  = '';
+	$a2zaal_display_input_type = 'checkbox';
+
+	if ( $a2zaal_post_type_processing ) {
+		$a2zaal_processing_output  = sprintf(
+			'<span class="a2zaal_processing">%s&nbsp;</span>',
+			\esc_html__( 'Processing', 'nvwd-a2zaal' )
+		);
+		$a2zaal_display_input_type = 'hidden';
 	}
 
-	$processing_output = '';
-	$display_input_type = 'checkbox';
-	if ( $post_type_processing ) {
-		$processing_output = '<span class="a2zaal_processing">' . \esc_html__( 'Processing', 'nvwd-a2zaal' ) . '&nbsp;</span>';
-		$display_input_type = 'hidden';
-	}
+	$a2zaal_post_type_active = in_array( $a2zaal_post_type->name, $a2zaal_active_post_types, true ) ? ' checked="checked"' : '';
 
-	$post_type_active = in_array( $post_type->name, $a2zaal_active_post_types ) ? ' checked="checked"' : '';
-
-	echo '<p data-post_type="' . $post_type_attr . '">';
-	echo sprintf( '%s<input type="%s" name="a2zaal_enabled_post_type[]" value="%s"%s>', $processing_output, $display_input_type, $post_type_attr, $post_type_active );
-	echo \esc_html__( $post_type->label, 'nvwd-a2zaal' ) . ' (' . $post_type_total_count . ')';
-	echo "</p>";
+	printf(
+		'<p data-post_type="%s">%s<input type="%s" name="a2zaal_enabled_post_type[]" value="%s"%s>%s (%d)</p>',
+		\esc_attr( $a2zaal_post_type->name ),
+		\wp_kses_post( $a2zaal_processing_output ),
+		\esc_attr( $a2zaal_display_input_type ),
+		\esc_attr( $a2zaal_post_type->name ),
+		\esc_attr( $a2zaal_post_type_active ),
+		\esc_html( $a2zaal_post_type->label ),
+		\esc_html( $a2zaal_post_type_total_count )
+	);
 }
+
 ?>
 		<input type="submit" name="sbmt_a2zaal_settings" class="button button-primary" value="Submit">
 </form>
