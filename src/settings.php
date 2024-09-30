@@ -114,6 +114,7 @@ function maybe_process_a2zaal_settings_save( WP_Screen $screen_obj ) {
 
 	\wp_enqueue_script( 'a2zaal_settings_admin', A2ZAAL_ROOT_URL . 'js/a2zaal.js', [ 'jquery' ], A2ZAAL_VERSION, true );
 
+	// phpcs:ignore WordPress.Security.NonceVerification.Missing, SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable -- the nonce is checked in process_options_submission() if this _POST var is not empty.
 	if ( empty( $_POST['sbmt_a2zaal_settings'] ) ) {
 		return;
 	}
@@ -133,11 +134,14 @@ function maybe_process_a2zaal_settings_save( WP_Screen $screen_obj ) {
 function process_options_submission( array $a2zaal_original_cpts ) {
 	\check_admin_referer( 'a2zaal-options' );
 
+	// phpcs:disable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable -- checking if the _POST var exists before sanitizing it.
 	$submitted_cpts = isset( $_POST['a2zaal_enabled_post_type'] )
 		? array_map( 'sanitize_text_field', \wp_unslash( $_POST['a2zaal_enabled_post_type'] ) )
 		: false;
-	$enable_cpts    = [];
-	$disable_cpts   = [];
+	// phpcs:enable SlevomatCodingStandard.Variables.DisallowSuperGlobalVariable.DisallowedSuperGlobalVariable
+
+	$enable_cpts  = [];
+	$disable_cpts = [];
 
 	if ( $submitted_cpts ) {
 		$enable_cpts  = array_diff( $submitted_cpts, $a2zaal_original_cpts );
