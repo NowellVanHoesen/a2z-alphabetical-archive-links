@@ -39,9 +39,9 @@ register_activation_hook( A2ZAAL_PLUGIN, 'a2zaal_activation_check' );
 register_deactivation_hook( A2ZAAL_PLUGIN, 'a2zaal_deactivate' );
 register_uninstall_hook( A2ZAAL_PLUGIN, 'a2zaal_uninstall' );
 
-add_filter( 'a2zaal_do_version_checks', 'a2zaal_check_php_version' );
-add_filter( 'a2zaal_do_version_checks', 'a2zaal_check_wp_version' );
-add_action( 'admin_init', 'a2zaal_verify_versions' );
+add_filter( 'a2zaal_do_version_checks', __NAMESPACE__ . '\a2zaal_check_php_version' );
+add_filter( 'a2zaal_do_version_checks', __NAMESPACE__ . '\a2zaal_check_wp_version' );
+add_action( 'admin_init', __NAMESPACE__ . '\a2zaal_verify_versions' );
 
 /* do version checks before including the rest of the plugin code */
 if ( is_wp_error( a2zaal_version_checks() ) ) {
