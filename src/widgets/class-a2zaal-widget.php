@@ -1,19 +1,4 @@
 <?php
-/**
- * A2Z Alphabetical Archive Links Widget
- *
- * The widget will be registered once there are a2zaal active post types
- *
- * @package     NVWD\A2ZAAL
- *
- * @since       2.0.0
- *
- * @author      nvwd
- *
- * @link        http://nvwebdev.com/
- *
- * @license     GPL-2.0+
- */
 
 namespace NVWD\A2ZAAL;
 

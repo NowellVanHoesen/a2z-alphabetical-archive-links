@@ -1,17 +1,4 @@
 <?php
-/**
- * A2Z Alphabetical Archive Rewrites Handler
- *
- * @package     NVWD\A2ZAAL
- *
- * @since       2.0.0
- *
- * @author      nvwd
- *
- * @link        http://nvwebdev.com/
- *
- * @license     GPL-2.0+
- */
 
 namespace NVWD\A2ZAAL;
 
