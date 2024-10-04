@@ -75,12 +75,38 @@ function create_settings_page() {
  */
 function register_plugin_settings() {
 	$args = [
-		'show_in_rest' => true,
 		'default'      => [],
 		'type'         => 'array',
+		'show_in_rest' => [
+			'schema' => [
+				'type'  => 'array',
+				'items' => [
+					'type' => 'string',
+				],
+			],
+		],
 	];
 
-	register_setting( 'options', 'a2zaal_post_types', $args );
+	\register_setting( 'options', 'a2zaal_post_types', $args );
+}
+
+add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\output_a2z_active_post_types' );
+
+/**
+ * Outputs the a2z active post types for use in the block editor
+ *
+ * @author nvwd
+ *
+ * @since 2.1.0
+ */
+function output_a2z_active_post_types() {
+	$a2z_active_post_types = get_a2zaal_active_post_types();
+
+	\wp_add_inline_script(
+		'nvwda2zaal-a2z-links-editor-script',
+		'const NVWDA2ZAAL_activePostTypes = ' . \wp_json_encode( $a2z_active_post_types ) . ';',
+		'before'
+	);
 }
 
 add_action( 'current_screen', __NAMESPACE__ . '\maybe_process_a2zaal_settings_save' );

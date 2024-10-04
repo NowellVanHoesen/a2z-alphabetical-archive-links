@@ -27,11 +27,7 @@ import { store as coreStore } from '@wordpress/core-data';
 export default function Edit( { attributes, setAttributes } ) {
 	const blockProps = useBlockProps();
 	const { title, showCounts, selectedPostType } = attributes;
-	const availablePostTypes = window.NVWDA2ZAAL;
-	const testSettings = useSelect(
-		( select ) => select( 'core' ).getSite()
-	);
-	console.log(testSettings);
+	const availablePostTypes = NVWDA2ZAAL_activePostTypes;
 
 	return (
 		<>
