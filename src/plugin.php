@@ -78,8 +78,8 @@ function filter_archive_title( string $archive_title ) {
 		return $archive_title;
 	}
 
-	$post_type_labels    = get_post_type_object( get_query_var( 'post_type' ) );
-	$group_title_initial = get_query_var( A2ZAAL_REWRITE_TAG );
+	$post_type_labels    = \get_post_type_object( \get_query_var( 'post_type' ) );
+	$group_title_initial = \get_query_var( A2ZAAL_REWRITE_TAG );
 
 	if ( '0' === $group_title_initial ) {
 		$group_title_initial = '#';
@@ -105,9 +105,9 @@ function filter_archive_description( string $archive_description ) {
 		return $archive_description;
 	}
 
-	$post_type_labels = get_post_type_object( get_query_var( 'post_type' ) );
+	$post_type_labels = \get_post_type_object( \get_query_var( 'post_type' ) );
 
-	$group_title_initial = get_query_var( A2ZAAL_REWRITE_TAG );
+	$group_title_initial = \get_query_var( A2ZAAL_REWRITE_TAG );
 
 	if ( '0' === $group_title_initial ) {
 		$group_title_initial = 'a number';

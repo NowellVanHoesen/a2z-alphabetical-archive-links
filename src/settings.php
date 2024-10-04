@@ -21,7 +21,7 @@ function add_settings_page_link( array $links ) {
 	$settings_link = sprintf(
 		'<a href="%s">%s</a>',
 		\admin_url( 'options-general.php?page=a2zaal-options' ),
-		__( 'Settings', 'nvwd-a2zaal' )
+		\__( 'Settings', 'nvwd-a2zaal' )
 	);
 	array_unshift( $links, $settings_link );
 
@@ -63,8 +63,8 @@ function create_settings_page() {
 	require A2ZAAL_VIEW_DIR . 'settings-form.php';
 }
 
-add_action( 'admin_init', __NAMESPACE__ . '\register_plugin_settings' );
-add_action( 'rest_admin_init', __NAMESPACE__ . '\register_plugin_settings' );
+\add_action( 'admin_init', __NAMESPACE__ . '\register_plugin_settings' );
+\add_action( 'rest_admin_init', __NAMESPACE__ . '\register_plugin_settings' );
 
 /**
  * Register block widget

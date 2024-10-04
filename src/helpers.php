@@ -14,7 +14,7 @@ use WP_Post;
  * @return array
  */
 function get_a2zaal_active_post_types() {
-	$a2zaal_active_post_types = get_option( 'a2zaal_post_types', [] );
+	$a2zaal_active_post_types = \get_option( 'a2zaal_post_types', [] );
 
 	if ( ! is_array( $a2zaal_active_post_types ) ) {
 		return [];
@@ -33,7 +33,7 @@ function get_a2zaal_active_post_types() {
  * @return array
  */
 function get_a2zaal_processing_post_types() {
-	$a2zaal_processing_objects = get_option( 'a2zaal_processing_objects', [] );
+	$a2zaal_processing_objects = \get_option( 'a2zaal_processing_objects', [] );
 
 	if ( empty( $a2zaal_processing_objects['post_types'] ) ) {
 		return [];

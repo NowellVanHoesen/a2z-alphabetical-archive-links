@@ -44,26 +44,26 @@ class A2zaal_Widget extends WP_Widget {
 			'show_counts'        => '',
 		];
 
-		$instance = wp_parse_args( (array) $instance, $defaults );
+		$instance = \wp_parse_args( (array) $instance, $defaults );
 
-		$available_posts_types = get_post_types( [ 'publicly_queryable' => true ], 'objects' );
+		$available_posts_types = \get_post_types( [ 'publicly_queryable' => true ], 'objects' );
 
 		$a2zaal_active_post_types = get_a2zaal_active_post_types();
 
 		printf(
 			'<p>Title: <input class="widefat" name="%s" type="text" value="%s" /></p>',
-			esc_attr( $this->get_field_name( 'title' ) ),
-			esc_attr( $instance['title'] )
+			\esc_attr( $this->get_field_name( 'title' ) ),
+			\esc_attr( $instance['title'] )
 		);
-		printf( '<p>Post Type: <select name="%s">', esc_attr( $this->get_field_name( 'selected_post_type' ) ) );
+		printf( '<p>Post Type: <select name="%s">', \esc_attr( $this->get_field_name( 'selected_post_type' ) ) );
 
 		foreach ( $available_posts_types as $post_type_obj ) {
 			if ( in_array( $post_type_obj->name, $a2zaal_active_post_types, true ) ) {
 				printf(
 					'<option value="%s" %s>%s</option>',
-					esc_attr( $post_type_obj->name ),
-					selected( $instance['selected_post_type'], $post_type_obj->name, false ),
-					esc_html( $post_type_obj->label )
+					\esc_attr( $post_type_obj->name ),
+					\selected( $instance['selected_post_type'], $post_type_obj->name, false ),
+					\esc_html( $post_type_obj->label )
 				);
 			}
 		}
@@ -71,8 +71,8 @@ class A2zaal_Widget extends WP_Widget {
 		print '</select></p>';
 		printf(
 			'<p>Show Counts: <input name="%s" type="checkbox" %s/></p>',
-			esc_attr( $this->get_field_name( 'show_counts' ) ),
-			checked( $instance['show_counts'], 'on', false )
+			\esc_attr( $this->get_field_name( 'show_counts' ) ),
+			\checked( $instance['show_counts'], 'on', false )
 		);
 	}
 
@@ -101,8 +101,8 @@ class A2zaal_Widget extends WP_Widget {
 	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance                       = $old_instance;
-		$instance['title']              = wp_strip_all_tags( $new_instance['title'] );
-		$instance['selected_post_type'] = wp_strip_all_tags( $new_instance['selected_post_type'] );
+		$instance['title']              = \wp_strip_all_tags( $new_instance['title'] );
+		$instance['selected_post_type'] = \wp_strip_all_tags( $new_instance['selected_post_type'] );
 		$instance['show_counts']        = empty( $new_instance['show_counts'] ) ? '' : 'on';
 
 		return $instance;
@@ -132,7 +132,7 @@ class A2zaal_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 		// TODO: make this dynamic to be able to have custom styles enqueued.
-		wp_enqueue_style( 'default_a2zaal_style', A2ZAAL_ROOT_URL . '/css/display.css', [], A2ZAAL_VERSION );
+		\wp_enqueue_style( 'default_a2zaal_style', A2ZAAL_ROOT_URL . '/css/display.css', [], A2ZAAL_VERSION );
 
 		$post_type_titles_struct = get_option( $instance['selected_post_type'] . A2ZAAL_POSTS_SUFFIX, [] );
 		$display_links           = [];
