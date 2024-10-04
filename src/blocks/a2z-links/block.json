@@ -31,5 +31,6 @@
 	},
 	"textdomain": "a2z-links",
 	"editorScript": "file:./index.js",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"style": "file:../css/display.css"
 }
