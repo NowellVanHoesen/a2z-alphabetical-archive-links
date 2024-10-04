@@ -134,50 +134,19 @@ class A2zaal_Widget extends WP_Widget {
 		// TODO: make this dynamic to be able to have custom styles enqueued.
 		\wp_enqueue_style( 'default_a2zaal_style', A2ZAAL_ROOT_URL . '/css/display.css', [], A2ZAAL_VERSION );
 
-		$post_type_titles_struct = get_option( $instance['selected_post_type'] . A2ZAAL_POSTS_SUFFIX, [] );
-		$display_links           = [];
+		$show_counts = ! empty( $instance['show_counts'] );
 
-		ksort( $post_type_titles_struct, SORT_NATURAL );
-
-		foreach ( $post_type_titles_struct as $title_initial => $grouped_titles ) {
-			$group_link          = '/' . $instance['selected_post_type'] . '/' . A2ZAAL_REWRITE_TAG . '/' . $title_initial;
-			$group_count_display = ! empty( $instance['show_counts'] )
-				? '<span>' . number_format_i18n( count( $grouped_titles ) ) . '</span>'
-				: '';
-			$link_classes        = ! empty( $instance['show_counts'] ) ? [ 'count' ] : [];
-			$link_classes        = implode( ' ', apply_filters( 'a2zaal_link_css_class', $link_classes, $instance, $args ) );
-			$link_title          = trim( apply_filters( 'a2zaal_link_title', '', $instance, $args ) );
-			$link_text_display   = $title_initial;
-
-			if ( 0 === $title_initial ) {
-				$group_link        = '/' . $instance['selected_post_type'] . '/' . A2ZAAL_REWRITE_TAG . '/num';
-				$link_text_display = '#';
-			}
-
-			// TODO: Make sure link is accessible.
-			$display_links[] = sprintf(
-				'<li><a href="%s" class="%s" title="%s">%s%s</a></li>',
-				$group_link,
-				$link_classes,
-				$link_title,
-				$link_text_display,
-				$group_count_display
-			);
-		}
+		$display_links = get_a2zaal_display_links( $instance['selected_post_type'], $show_counts );
 
 		$container_classes = [];
 
-		if ( $instance['show_counts'] ) {
+		if ( $show_counts ) {
 			$container_classes[] = 'counts';
 		}
 
-		$container_classes = apply_filters( 'a2zaal_container_classes', $container_classes, $instance, $args );
+		$container_classes = \apply_filters( 'a2zaal_container_classes', $container_classes, $instance, $args );
 
 		$container_class_output = empty( $container_classes ) ? '' : ' class="' . implode( ' ', $container_classes ) . '"';
-
-		if ( empty( $display_links ) ) {
-			$display_links[] = '<p>' . esc_html__( 'No links to display.', 'nvwd-a2zaal' ) . '</p>';
-		}
 
 		print \wp_kses_post( $args['before_widget'] );
 		print \wp_kses_post( $args['before_title'] . $instance['title'] . $args['after_title'] );

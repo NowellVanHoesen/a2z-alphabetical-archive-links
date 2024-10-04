@@ -146,3 +146,60 @@ function remove_prior_post_a2zaal_data( array &$a2zaal_cpt_option, int $post_id,
 		unset( $a2zaal_cpt_option[ $key ][ $post_id ] );
 	}
 }
+
+/**
+ * Returns the array of a2z links for the widget/block to display.
+ *
+ * @author nvwd
+ *
+ * @since 2.1.0
+ *
+ * @param string $selected_post_type selected post type for the links.
+ * @param bool   $show_counts whether to display counts for the initial groups.
+ *
+ * @return array
+ */
+function get_a2zaal_display_links( string $selected_post_type, bool $show_counts ) {
+	$post_type_titles_struct = \get_option( $selected_post_type . A2ZAAL_POSTS_SUFFIX, [] );
+
+	if ( empty( $post_type_titles_struct ) ) {
+		return [ '<p>' . \__( 'No links to display.', 'nvwd-a2zaal' ) . '</p>' ];
+	}
+
+	$post_type_labels = \get_post_type_object( $selected_post_type )->labels;
+
+	ksort( $post_type_titles_struct, SORT_NATURAL );
+
+	/* translators: %s: plural post type name */
+	$link_prefix = sprintf( \__( '%s beginning with ', 'nvwd-a2zaal' ), $post_type_labels->name );
+
+	foreach ( $post_type_titles_struct as $title_initial => $grouped_titles ) {
+		$group_link          = '/' . $selected_post_type . '/' . A2ZAAL_REWRITE_TAG . '/' . $title_initial;
+		$group_count_display = ! empty( $show_counts )
+			? '<span>' . \number_format_i18n( count( $grouped_titles ) ) . '</span>'
+			: '';
+		$link_classes        = ! empty( $show_counts ) ? [ 'count' ] : [];
+		$link_classes        = implode( ' ', \apply_filters( 'a2zaal_link_css_class', $link_classes, $selected_post_type ) );
+		$link_title          = trim(
+			\apply_filters( 'a2zaal_link_title', $link_prefix . $title_initial, $selected_post_type, $title_initial )
+		);
+		$link_text_display   = $title_initial;
+
+		if ( 0 === $title_initial ) {
+			$group_link        = '/' . $selected_post_type . '/' . A2ZAAL_REWRITE_TAG . '/num';
+			$link_text_display = '#';
+		}
+
+		// TODO: Make sure link is accessible.
+		$display_links[] = sprintf(
+			'<li><a href="%s" class="%s" title="%s">%s%s</a></li>',
+			$group_link,
+			$link_classes,
+			$link_title,
+			$link_text_display,
+			$group_count_display
+		);
+	}
+
+	return $display_links;
+}
