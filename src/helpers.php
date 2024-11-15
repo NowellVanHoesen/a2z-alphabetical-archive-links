@@ -4,6 +4,8 @@ namespace NVWD\A2ZAAL;
 
 use WP_Post;
 
+add_filter( 'widget_block_dynamic_classname', __NAMESPACE__ . '\add_widget_classname', 10, 2 );
+
 /**
  * Return an array of a2zaal active post types or an empty array when none are active
  *
@@ -202,4 +204,24 @@ function get_a2zaal_display_links( string $selected_post_type, bool $show_counts
 	}
 
 	return $display_links;
+}
+
+/**
+ * Returns adjusted className list for a2z-links widget wrapper.
+ *
+ * @author nvwd
+ * 
+ * @since 2.0.2
+ * 
+ * @param string $classname list of classnames to be used in the block widget’s container HTML
+ * @param string $block_name name of the block contained by the block widget.
+ * 
+ * @return string
+ */
+function add_widget_classname( $classname, $block_name ) {
+	if ( 'nvwda2zaal/a2z-links' !== $block_name ) {
+		return $classname;
+	}
+
+	return $classname .= ' a2zaal_widget';
 }
