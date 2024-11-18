@@ -210,18 +210,19 @@ function get_a2zaal_display_links( string $selected_post_type, bool $show_counts
  * Returns adjusted className list for a2z-links widget wrapper.
  *
  * @author nvwd
- * 
+ *
  * @since 2.0.2
- * 
- * @param string $classname list of classnames to be used in the block widget’s container HTML
+ *
+ * @param string $classname list of classnames to be used in the block widget’s container HTML.
  * @param string $block_name name of the block contained by the block widget.
- * 
+ *
  * @return string
  */
-function add_widget_classname( $classname, $block_name ) {
+function add_widget_classname( string $classname, string $block_name ) {
 	if ( 'nvwda2zaal/a2z-links' !== $block_name ) {
 		return $classname;
 	}
 
+	// phpcs:ignore SlevomatCodingStandard.Variables.UnusedVariable.UnusedVariable -- unused even though it's part of the return. 
 	return $classname .= ' a2zaal_widget';
 }
