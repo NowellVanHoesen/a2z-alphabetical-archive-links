@@ -4,7 +4,7 @@
 	Plugin URI: https://github.com/NowellVanHoesen/a2z-alphabetical-archive-links/wiki
 	Description: Get a list of characters, A to Z, from the initial character of a post or CPT title.
 				The Initials will link to an archive page of posts/CPTs that begin with that character.
-	Version: 2.0.2
+	Version: 2.1.0
 	Author: Nowell VanHoesen
 	Author URI: http://nvwebdev.com/
 	Author Email: nowell@nvwebdev.com
@@ -21,7 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 define( 'A2ZAAL_PLUGIN', __FILE__ );
 define( 'A2ZAAL_BASENAME', plugin_basename( A2ZAAL_PLUGIN ) );
-define( 'A2ZAAL_VERSION', '2.0.2' );
+define( 'A2ZAAL_VERSION', '2.1.0' );
 define( 'A2ZAAL_PLUGIN_ROOT_DIR', trailingslashit( __DIR__ ) );
 
 $a2zaal_url = plugin_dir_url( A2ZAAL_PLUGIN );
@@ -32,8 +32,8 @@ if ( is_ssl() ) {
 
 define( 'A2ZAAL_ROOT_URL', $a2zaal_url );
 
-define( 'A2ZAAL_PHP_MIN_VERSION', '5.6' );
-define( 'A2ZAAL_WP_MIN_VERSION', '4.6.0' );
+define( 'A2ZAAL_PHP_MIN_VERSION', '7.4' );
+define( 'A2ZAAL_WP_MIN_VERSION', '5.8.0' );
 
 register_activation_hook( A2ZAAL_PLUGIN, 'a2zaal_activation_check' );
 register_deactivation_hook( A2ZAAL_PLUGIN, 'a2zaal_deactivate' );

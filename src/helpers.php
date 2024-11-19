@@ -211,7 +211,7 @@ function get_a2zaal_display_links( string $selected_post_type, bool $show_counts
  *
  * @author nvwd
  *
- * @since 2.0.2
+ * @since 2.1.0
  *
  * @param string $classname list of classnames to be used in the block widget’s container HTML.
  * @param string $block_name name of the block contained by the block widget.
