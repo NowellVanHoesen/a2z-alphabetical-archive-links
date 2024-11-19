@@ -5,6 +5,8 @@
 	Description: Get a list of characters, A to Z, from the initial character of a post or CPT title.
 				The Initials will link to an archive page of posts/CPTs that begin with that character.
 	Version: 2.1.0
+	Requires at least: 5.8
+	Requires PHP: 7.4
 	Author: Nowell VanHoesen
 	Author URI: http://nvwebdev.com/
 	Author Email: nowell@nvwebdev.com
@@ -33,7 +35,7 @@ if ( is_ssl() ) {
 define( 'A2ZAAL_ROOT_URL', $a2zaal_url );
 
 define( 'A2ZAAL_PHP_MIN_VERSION', '7.4' );
-define( 'A2ZAAL_WP_MIN_VERSION', '5.8.0' );
+define( 'A2ZAAL_WP_MIN_VERSION', '5.8' );
 
 register_activation_hook( A2ZAAL_PLUGIN, 'a2zaal_activation_check' );
 register_deactivation_hook( A2ZAAL_PLUGIN, 'a2zaal_deactivate' );

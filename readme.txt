@@ -2,10 +2,10 @@
 Contributors: nvwd
 Donate link: http://nvwebdev.com
 Tags: post title, custom post type title, cpt title, title, alphabetical, alphabatized
-Requires at least: 4.6.0
-Tested up to: 5.0.3
-Requires PHP: 5.6
-Stable tag: 2.0.2
+Requires at least: 5.8.0
+Tested up to: 6.7
+Requires PHP: 7.4
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,7 +35,7 @@ If the title begins with the following words, the first character of the second 
 1. Upload the entire 'a2z-alphabetical-archive-links' folder to the '/wp-content/plugins/' directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Go to the settings page to activate which post type(s) to have
-1. Add the 'A2Z Alphabetical Archive Links' widget to a widget area
+1. Add the 'A2Z Alphabetical Archive Links' widget to a widget area or add the A2Z Links block to a block area
 
 == Frequently Asked Questions ==
 
@@ -49,17 +49,24 @@ None at this time
 
 == Changelog ==
 
+= 2.1.0 =
+
+* Added links block to replace legacy widget
+* Updated minimum php version to 7.4
+* Updated minimum WordPress version to 5.8
+* Resolved RegEx issue that incorrectly grouped some titles in the group that begin with numbers.
+
 = 2.0.2 =
 
 cleaning up version numbers
 
 = 2.0.1 =
 
-* fixed bug with earlier versions of php and version checking
+fixed bug with earlier versions of php and version checking
 
 = 2.0.0 =
 
-Complete rewrite. In an effort to make the code scale better.
+* Complete rewrite. In an effort to make the code scale better.
 * Removed slow query
 * Added minimum WordPress version check
 * Added minimum php version check
