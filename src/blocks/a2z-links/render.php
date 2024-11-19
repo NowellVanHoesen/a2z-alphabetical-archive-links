@@ -8,6 +8,7 @@ namespace NVWD\A2ZAAL;
 if ( ! wp_style_is( 'default_a2zaal_style', 'enqueued' ) ) {
 	\wp_enqueue_style( 'default_a2zaal_style', A2ZAAL_ROOT_URL . '/css/display.css', [], A2ZAAL_VERSION );
 }
+
 $a2zaal_container_classes = [];
 
 if ( $attributes['showCounts'] ) {

@@ -66,7 +66,8 @@ export default function Edit( { attributes, setAttributes } ) {
 				{ title && (
 					<h2 className="widget-title">{ __( title, 'nvwd-a2zaal' ) }</h2>
 				) }
-				{ __( 'A2z Links placeholder', 'a2z-links' ) }
+				{ showCounts && __( `A2z Links placeholder for ${selectedPostType} - with Show Counts enabled`, 'a2z-links' ) }
+				{ ! showCounts && __( `A2z Links placeholder for ${selectedPostType} - with Show Counts disabled`, 'a2z-links' ) }
 			</section>
 		</>
 	);

@@ -135,7 +135,7 @@ class A2zaal_Widget extends WP_Widget {
 		if ( ! wp_style_is( 'default_a2zaal_style', 'enqueued' ) ) {
 			\wp_enqueue_style( 'default_a2zaal_style', A2ZAAL_ROOT_URL . '/css/display.css', [], A2ZAAL_VERSION );
 		}
-		
+
 		$show_counts = ! empty( $instance['show_counts'] );
 
 		$display_links = get_a2zaal_display_links( $instance['selected_post_type'], $show_counts );
