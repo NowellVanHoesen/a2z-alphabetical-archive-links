@@ -62,13 +62,11 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			{console.log(blockProps)}
 			<section { ...blockProps }>
 				{ title && (
 					<h2 className="widget-title">{ __( title, 'nvwd-a2zaal' ) }</h2>
 				) }
-				// TODO: replace the next line with link output/loading.
-				{ __( 'A2z Links – hello from the editor!', 'a2z-links' ) }
+				{ __( 'A2z Links placeholder', 'a2z-links' ) }
 			</section>
 		</>
 	);
