@@ -43,9 +43,11 @@ None at this time
 
 == Screenshots ==
 
-1. Widget config
-1. Links without count
-1. Links with count (top), hover example ( bottom )
+1. Legacy widget config
+1. A2Z Links block editor with counts disabled
+1. A2Z Links block editor with counts enabled
+1. A2Z Links block output with counts disabled
+1. A2Z Links block output with counts enabled
 
 == Changelog ==
 
