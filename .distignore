@@ -1,0 +1,15 @@
+/.wordpress-org
+/.git
+/.github
+/.vscode
+/node_modules
+/tests
+/vendor
+
+.distignore
+.editorconfig
+.gitignore
+composer.json
+composer.lock
+package-lock.json
+phpcs.xml.dist
