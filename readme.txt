@@ -1,7 +1,7 @@
 === A-2-Z Alphabetical Archive Links ===
 Contributors: nvwd
 Donate link: http://nvwebdev.com
-Tags: post title, custom post type title, cpt title, title, alphabetical, alphabatized
+Tags: post title, custom post type title, cpt title, title, alphabetical, alphabetized
 Requires at least: 5.8.0
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -79,7 +79,7 @@ Changed link builder again to account for modified front page settings
 
 = 1.0.1 =
 
-* Changed widget option for post type to include only publically queriable post types ( Pages not an option anymore )
+* Changed widget option for post type to include only publicly queryable post types ( Pages not an option anymore )
 * Fixed links generated when using the post type of Post
 
 = 1.0 =
