@@ -162,6 +162,10 @@ function remove_prior_post_a2zaal_data( array &$a2zaal_cpt_option, int $post_id,
  * @return array
  */
 function get_a2zaal_display_links( string $selected_post_type, bool $show_counts ) {
+	if ( empty( $selected_post_type ) ) {
+		return [ '<p>' . \__( 'Post type not selected.', 'nvwd-a2zaal' ) . '</p>' ];
+	}
+
 	$post_type_titles_struct = \get_option( $selected_post_type . A2ZAAL_POSTS_SUFFIX, [] );
 
 	if ( empty( $post_type_titles_struct ) ) {

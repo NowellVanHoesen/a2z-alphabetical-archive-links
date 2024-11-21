@@ -15,6 +15,16 @@ if ( $attributes['showCounts'] ) {
 	$a2zaal_container_classes[] = 'counts';
 }
 
+if ( empty( $attributes['selectedPostType'] ) ) {
+	$attributes['selectedPostType'] = '';
+	
+	$active_post_types = get_a2zaal_active_post_types();
+
+	if ( 1 <= count( $active_post_types ) ) {
+		$attributes['selectedPostType'] = $active_post_types[0];
+	}
+}
+
 if ( ! empty( $attributes['title'] ) ) {
 	printf( '<h2>%s</h2>', \esc_html( $attributes['title'] ) );
 }

@@ -20,13 +20,16 @@
 	},
 	"attributes": {
 		"title": {
-			"type": "string"
+			"type": "string",
+			"default": ""
 		},
 		"showCounts": {
-			"type": "boolean"
+			"type": "boolean",
+			"default": false
 		},
 		"selectedPostType": {
-			"type": "string"
+			"type": "string",
+			"default": ""
 		}
 	},
 	"textdomain": "a2z-links",
