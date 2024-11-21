@@ -1,7 +1,7 @@
 === A-2-Z Alphabetical Archive Links ===
 Contributors: nvwd
 Donate link: http://nvwebdev.com
-Tags: post title, custom post type title, cpt title, title, alphabetical, alphabetized
+Tags: post title, custom post type title, cpt title, title, alphabetical
 Requires at least: 5.8.0
 Tested up to: 6.7
 Requires PHP: 7.4
