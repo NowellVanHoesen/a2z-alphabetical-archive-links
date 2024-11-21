@@ -5,7 +5,7 @@ Tags: post title, custom post type title, cpt title, title, alphabetical, alphab
 Requires at least: 5.8.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,10 @@ None at this time
 1. A2Z Links block output with counts enabled
 
 == Changelog ==
+
+= 2.1.1 =
+
+Added default values for block attributes and added checks to ensure they have values before render
 
 = 2.1.0 =
 
